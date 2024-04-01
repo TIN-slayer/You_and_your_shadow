@@ -1,0 +1,3 @@
+rep "TEST-24@TigrNavigator04@cloud"
+  path "/"
+    smartbranch "/main" changeset "49"                                                                                                       

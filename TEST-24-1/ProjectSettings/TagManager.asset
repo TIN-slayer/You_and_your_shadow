@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Enemy
+  - BounceEnemy
+  - FollowingEnemy
+  - SpikeEnemy
+  - ShootingEnemy
+  - Ground
+  - GoalsCounter
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - Ground
+  - Water
+  - UI
+  - Player
+  - Enemy
+  - Explosion
+  - Void
+  - EnemyHitbox
+  - Trap
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 2921504903
+    locked: 0
+  - name: BigSaw
+    uniqueID: 3230315159
+    locked: 0
+  - name: BounceEnemy
+    uniqueID: 2133245751
+    locked: 0
+  - name: SpikeEnemy
+    uniqueID: 1993710103
+    locked: 0
+  - name: ShootingEnemy
+    uniqueID: 2901245125
+    locked: 0
+  - name: FollowingEnemy
+    uniqueID: 3344749867
+    locked: 0
+  - name: Bullet
+    uniqueID: 3125516207
+    locked: 0
+  - name: Explosion
+    uniqueID: 3614838713
+    locked: 0
+  - name: Ghost
+    uniqueID: 1913134233
+    locked: 0
+  - name: Player
+    uniqueID: 3919712073
+    locked: 0
+  - name: Zone
+    uniqueID: 3412720799
+    locked: 0
