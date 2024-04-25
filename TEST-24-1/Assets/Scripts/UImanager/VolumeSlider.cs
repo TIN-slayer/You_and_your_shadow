@@ -36,7 +36,7 @@ namespace UImanager
 
         public void SetVolume()
         {
-            float volume = Mathf.Log10(_volumeSlider.value) * 30;
+            float volume = Mathf.Log10(_volumeSlider.value) * 20;
             _audioMixer.SetFloat(_mixerName, volume);
             LevelsData data = SaveSystem.LoadProgress();
             data.SetVolume(_mixerNum, _volumeSlider.value);

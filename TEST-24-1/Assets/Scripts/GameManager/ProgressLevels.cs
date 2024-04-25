@@ -1,8 +1,9 @@
-using Core;
+using General;
 using Data;
 using GameManager;
 using System.Collections;
 using System.Collections.Generic;
+using UImanager;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -22,7 +23,7 @@ public class ProgressLevels : MonoBehaviour
     private void LevelCompleted()
     {
         int curScene = SceneManager.GetActiveScene().buildIndex;
-        if (curScene < (int)ScenesEnum.lvl_last)
+        if (curScene < (int)ScenesEnum.lvl_1 + (LevelsManager.NumLevels - 1))
         {
             LevelsData levelsData = SaveSystem.LoadProgress();
             levelsData.UnlockLevel(curScene - (int)ScenesEnum.lvl_1 + 1);

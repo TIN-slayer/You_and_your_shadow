@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Core;
+using General;
+using UImanager;
 
 namespace Data
 {
@@ -31,7 +32,7 @@ namespace Data
 
         public void UnlockAllLevels()
         {
-            for (int i = 0; i < GameConstants.NUM_LEVELS; i++)
+            for (int i = 0; i < LevelsManager.NumLevels; i++)
             {
                 Levels[i] = true;
             }

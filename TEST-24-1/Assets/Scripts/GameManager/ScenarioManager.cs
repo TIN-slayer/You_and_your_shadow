@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UImanager;
-using Core;
+using General;
 using Tamplates;
 using Player;
 namespace GameManager

@@ -1,6 +1,6 @@
 using System.Collections;
 using UnityEngine;
-using Core;
+using General;
 
 namespace Player
 {

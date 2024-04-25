@@ -1,4 +1,4 @@
-using Core;
+using General;
 using Enemies;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,26 +13,23 @@ namespace GameManager
         private ContactFilter2D _contactFilter = new ContactFilter2D();
         private List<Vector2> _spawnPoints = new()
         {
-            new(3f, 1f), new(4f, 1f), new(5f, 1f),
-            new(2f, 2f), new(3f, 2f), new(4f, 2f),
-            new(1f, 3f), new(2f, 3f), new(3f, 3f), new(4f, 3f),
-            new(1f, 4f), new(2f, 4f), new(3f, 4f), new(1f, 5f),
-            new(3f, -1f), new(4f, -1f), new(5f, -1f),
-            new(2f, -2f), new(3f, -2f), new(4f, -2f),
+            new(3f, 1f), new(4f, 1f), new(5f, 1f), new(2f, 2f),
+            new(3f, 2f), new(4f, 2f), new(1f, 3f), new(2f, 3f),
+            new(3f, 3f), new(4f, 3f), new(1f, 4f), new(2f, 4f),
+            new(3f, 4f), new(1f, 5f), new(3f, -1f), new(4f, -1f),
+            new(5f, -1f), new(2f, -2f), new(3f, -2f), new(4f, -2f),
             new(1f, -3f), new(2f, -3f), new(3f, -3f), new(4f, -3f),
             new(1f, -4f), new(2f, -4f), new(3f, -4f), new(1f, -5f),
-            new(-3f, -1f), new(-4f, -1f), new(-5f, -1f),
-            new(-2f, -2f), new(-3f, -2f), new(-4f, -2f),
-            new(-1f, -3f), new(-2f, -3f), new(-3f, -3f), new(-4f, -3f),
-            new(-1f, -4f), new(-2f, -4f), new(-3f, -4f), new(-1f, -5f),
-            new(-3f, 1f), new(-4f, 1f), new(-5f, 1f),
-            new(-2f, 2f), new(-3f, 2f), new(-4f, 2f),
-            new(-1f, 3f), new(-2f, 3f), new(-3f, 3f), new(-4f, 3f),
-            new(-1f, 4f), new(-2f, 4f), new(-3f, 4f), new(-1f, 5f),
-            new(0f, 3f), new(0f, 4f), new(0f, 5f),
-            new(0f, -3f), new(0f, -4f), new(0f, -5f),
-            new(3f, 0f), new(4f, 0f), new(5f, 0f),
-            new(-3f, 0f), new(-4f, 0f), new(-5f, 0f)
+            new(0f, 3f), new(0f, 4f), new(0f, 5f), new(3f, 0f),
+            new(4f, 0f), new(5f, 0f), new(-5f, -0f), new(-4f, -0f),
+            new(-3f, -0f), new(-0f, -5f), new(-0f, -4f), new(-0f, -3f),
+            new(-1f, 5f), new(-3f, 4f), new(-2f, 4f), new(-1f, 4f),
+            new(-4f, 3f), new(-3f, 3f), new(-2f, 3f), new(-1f, 3f),
+            new(-4f, 2f), new(-3f, 2f), new(-2f, 2f), new(-5f, 1f),
+            new(-4f, 1f), new(-3f, 1f), new(-1f, -5f), new(-3f, -4f),
+            new(-2f, -4f), new(-1f, -4f), new(-4f, -3f), new(-3f, -3f),
+            new(-2f, -3f), new(-1f, -3f), new(-4f, -2f), new(-3f, -2f),
+            new(-2f, -2f), new(-5f, -1f), new(-4f, -1f), new(-3f, -1f)
         };
         [SerializeField] private List<GameObject> _enemyList;
         private Dictionary<string, GameObject> _enemyDict = new();
@@ -57,7 +54,6 @@ namespace GameManager
 
         private void RandomSpawn(GameObject enemy)
         {
-            // Проблемный код - при дабл килле невозможна проверка параллеьности
             Vector2 spawnPoint = new(0, 0);
             List<Collider2D> results = new();
             List<Collider2D> parallelResults = new();

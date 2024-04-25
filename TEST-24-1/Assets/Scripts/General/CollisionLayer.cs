@@ -1,4 +1,4 @@
-namespace Core
+namespace General
 {
     enum CollisionLayers : int
     {

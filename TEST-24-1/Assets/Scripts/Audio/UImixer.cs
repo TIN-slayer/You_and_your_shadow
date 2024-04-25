@@ -16,7 +16,7 @@ namespace Audio
             LevelsData data = SaveSystem.LoadProgress();
             for (int i = 0; i < mixers.Length; i++)
             {
-                float volume = Mathf.Log10(data.GetVolume(i)) * 30;
+                float volume = Mathf.Log10(data.GetVolume(i)) * 20;
                 print($"{mixers[i]} {volume}");
                 _audioMixer.SetFloat(mixers[i], volume);
             }

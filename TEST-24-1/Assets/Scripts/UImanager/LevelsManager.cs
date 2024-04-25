@@ -1,4 +1,4 @@
-using Core;
+using General;
 using Data;
 using System.Collections;
 using TMPro;
@@ -11,9 +11,15 @@ namespace UImanager
     // МБ разделить логику
     public class LevelsManager : MonoBehaviour
     {
+        public static int NumLevels;
         [SerializeField] private Sprite _unlocked;
         [SerializeField] private Sprite _locked;
-        private float _delayLoad = 0.1f;
+
+        private void Awake()
+        {
+            NumLevels = transform.childCount;
+        }
+
         private void Start()
         {
             SetUpLevels();
@@ -22,7 +28,7 @@ namespace UImanager
         private void SetUpLevels()
         {
             LevelsData levelsData = SaveSystem.LoadProgress();
-            for (int i = 0; i < GameConstants.NUM_LEVELS; i++)
+            for (int i = 0; i < NumLevels; i++)
             {
                 int lvl = i;
                 Transform child = transform.GetChild(i);
@@ -45,20 +51,11 @@ namespace UImanager
 
         public void LoadLevel(int lvl)
         {
-            StartCoroutine(DelayLoadScene((int)ScenesEnum.lvl_1 + lvl));
-        }
-
-        // Костыль
-        private IEnumerator DelayLoadScene(int scene)
-        {
-            yield return new WaitForSecondsRealtime(_delayLoad);
-            SceneManager.LoadScene(scene);
+            SceneManager.LoadScene((int)ScenesEnum.lvl_1 + lvl);
         }
 
         public void ResetLevels()
         {
-            // Закоменть!!!!!!!!
-            // SaveSystem.DeleteSaveFile();
             LevelsData levelsData = SaveSystem.LoadProgress();
             levelsData.ResetAllLevels();
             SaveSystem.SaveProgress(levelsData);

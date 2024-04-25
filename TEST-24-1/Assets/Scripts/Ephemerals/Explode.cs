@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using Enemies;
 using System;
-using Core;
+using General;
 
 namespace Ephemerals
 {

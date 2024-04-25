@@ -12,10 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59a0a878ad8de584997ba9e6a31c833b, type: 3}
   m_Name: Scenario0
   m_EditorClassIdentifier: 
-  _isTimer: 1
+  _isTimer: 0
   _timeGoal: 20
   _goals:
   - name: SpikeEnemy
-    val: 100
-  - name: ShootingEnemy
-    val: 2
+    val: 69
