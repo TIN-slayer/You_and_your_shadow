@@ -13,6 +13,7 @@ namespace General
         Explosion,
         Void,
         EnemyHitbox,
-        Trap
+        Trap,
+        Orb
     }
 }

@@ -50,3 +50,4 @@ MonoBehaviour:
   _sawTime: 1
   _pingPrefab: {fileID: 7433537360087465883, guid: ae2ae46b65d7d9746a4e788eebd6975e, type: 3}
   _sawPrefab: {fileID: 4273023686354074926, guid: 1620040d584733446bde1c472db70e10, type: 3}
+  isShadowTarget: 0

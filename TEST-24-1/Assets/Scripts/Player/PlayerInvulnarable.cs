@@ -1,12 +1,15 @@
 using System.Collections;
 using UnityEngine;
 using General;
+using Ephemerals;
 
 namespace Player
 {
     public class PlayerInvulnarable : MonoBehaviour
     {
-        [SerializeField] private float _invulnarableTime;
+        [SerializeField] private float _teleportInvulnarableTime;
+        private float _killInvulnarableTime = 0.5f;
+        private int _invulnarableCount = 0;
 
         private void Awake()
         {
@@ -15,25 +18,49 @@ namespace Player
 
         private void OnEnable()
         {
-            PlayerTeleport.Teleport += GetInvulnarable;
+            PlayerTeleport.Teleport += HandelTeleport;
+            //Explode.SuccessExploasion += HandelKill;
+            PlayerHealth.LivesChanged += HandelLostLive;
         }
 
         private void OnDisable()
         {
-            PlayerTeleport.Teleport -= GetInvulnarable;
+            PlayerTeleport.Teleport -= HandelTeleport;
+            //Explode.SuccessExploasion -= HandelKill;
+            PlayerHealth.LivesChanged -= HandelLostLive;
         }
 
-        public void GetInvulnarable(Vector3 teleportPosition)
+        private void HandelTeleport(TeleportArgs teleportArgs)
         {
-            StartCoroutine(InvulnarabilityPeriod());
+            StartCoroutine(InvulnarabilityPeriod(_teleportInvulnarableTime));
         }
-        private IEnumerator InvulnarabilityPeriod()
+
+        private void HandelKill()
         {
-            //spriteRenderer.color = transpColor;
-            Physics2D.IgnoreLayerCollision((int)CollisionLayers.Player, (int)CollisionLayers.EnemyHitbox, true);
-            yield return new WaitForSeconds(_invulnarableTime);
-            //spriteRenderer.color = fullColor;
-            Physics2D.IgnoreLayerCollision((int)CollisionLayers.Player, (int)CollisionLayers.EnemyHitbox, false);
+            StartCoroutine(InvulnarabilityPeriod(_killInvulnarableTime));
+        }
+
+        private void HandelLostLive(LivesChangedArgs arg)
+        {
+            if (arg.cooldown > 0)
+            {
+                StartCoroutine(InvulnarabilityPeriod(arg.cooldown));
+            }
+        }
+
+        private IEnumerator InvulnarabilityPeriod(float invulnarableTime)
+        {
+            ++_invulnarableCount;
+            if (_invulnarableCount == 1)
+            {
+                Physics2D.IgnoreLayerCollision((int)CollisionLayers.Player, (int)CollisionLayers.EnemyHitbox, true);
+            }
+            yield return new WaitForSeconds(invulnarableTime);
+            --_invulnarableCount;
+            if (_invulnarableCount == 0)
+            {
+                Physics2D.IgnoreLayerCollision((int)CollisionLayers.Player, (int)CollisionLayers.EnemyHitbox, false);
+            }
         }
     }
 }

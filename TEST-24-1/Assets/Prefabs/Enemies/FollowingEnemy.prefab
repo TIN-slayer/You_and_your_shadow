@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 1479258204035223036}
   - component: {fileID: 1756051808227300473}
   - component: {fileID: 901694691400550402}
+  - component: {fileID: 8945437328033589517}
   m_Layer: 7
   m_Name: FollowingEnemy
   m_TagString: FollowingEnemy
@@ -80,7 +81,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -950217429
-  m_SortingLayer: 4
+  m_SortingLayer: 7
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 041479ffe48da264dbfd47837e8201fb, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -152,9 +153,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.027454615, y: 0.023196816}
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.3730471
+  m_Radius: 0.4
 --- !u!114 &1851417777025447341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,6 +183,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hitbox: {fileID: 562076596892750760}
   _invulnarableTime: 1
+  _invulnarableColor: {r: 1, g: 1, b: 1, a: 0.47058824}
 --- !u!114 &8240618229909927862
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,7 +196,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53f61197815fcb241aa3c44a118b7c5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _flickTime: 0.15
 --- !u!95 &1479258204035223036
 Animator:
   serializedVersion: 5
@@ -241,6 +242,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5920fe9270d141b4bb566607c1ea9681, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8945437328033589517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3986695963397881220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e75349ffed82eb4a9a9bf4ff5657d1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _vulnarableTime: 1
+  _flickTime: 0.2
+  _health: {fileID: 1407541232277034728}
 --- !u!1 &8210467942174787855
 GameObject:
   m_ObjectHideFlags: 0
@@ -307,9 +323,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.025117636, y: 0}
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.26411748
+  m_Radius: 0.25
 --- !u!114 &1407541232277034728
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -6,9 +6,14 @@ using UnityEngine;
 
 namespace Player
 {
+    public struct TeleportArgs
+    {
+        public Vector3 position;
+    }
+
     public class PlayerTeleport : MonoBehaviour
     {
-        public static event Action<Vector3> Teleport;
+        public static event Action<TeleportArgs> Teleport;
         [SerializeField] private Transform _ghostTransform;
         private TeleportCooldown _cooldown;
         private bool _active = true;
@@ -38,7 +43,7 @@ namespace Player
             }
             if (Input.GetButtonDown("Jump"))
             {
-                Teleport?.Invoke(_ghostTransform.position);
+                Teleport?.Invoke(new TeleportArgs { position = _ghostTransform.position });
                 (transform.position, _ghostTransform.position) = (_ghostTransform.position, transform.position);
                 _cooldown.StartCooldown();
             }

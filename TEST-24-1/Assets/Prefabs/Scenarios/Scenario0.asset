@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Scenario0
   m_EditorClassIdentifier: 
   _isTimer: 0
-  _timeGoal: 20
+  _timeGoal: 28
   _goals:
-  - name: SpikeEnemy
-    val: 69
+  - name: BounceEnemy
+    val: 5

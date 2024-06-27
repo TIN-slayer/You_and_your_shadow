@@ -15,9 +15,9 @@ namespace Player
             PlayerTeleport.Teleport -= SpawnExplosion;
         }
 
-        private void SpawnExplosion(Vector3 teleportPosition)
+        private void SpawnExplosion(TeleportArgs teleportArgs)
         {
-            Instantiate(_explosionPrefab, teleportPosition, new Quaternion());
+            Instantiate(_explosionPrefab, teleportArgs.position, new Quaternion());
         }
     }
 }

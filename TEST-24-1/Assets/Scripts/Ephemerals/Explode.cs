@@ -3,6 +3,7 @@ using UnityEngine;
 using Enemies;
 using System;
 using General;
+using Orbs;
 
 namespace Ephemerals
 {
@@ -12,7 +13,7 @@ namespace Ephemerals
         [SerializeField] private float _explosionLifeTime;
         // Добавить states
         private bool _killMode = true;
-        public static Action EnemyExploaded;
+        public static Action SuccessExploasion;
         private void Start()
         {
             // Круто, можно использовать везде, но мне лень :(
@@ -29,8 +30,17 @@ namespace Ephemerals
             // Подумать насчет изТриггера
             if (enemy != null && _killMode)
             {
-                EnemyExploaded?.Invoke();
+                SuccessExploasion?.Invoke();
                 enemy.TakeDamage();
+                return;
+            }
+
+            OrbCollection orb = collision.gameObject.GetComponent<OrbCollection>();
+            // Подумать насчет изТриггера
+            if (orb != null && _killMode)
+            {
+                SuccessExploasion?.Invoke();
+                orb.GetCollected();
             }
         }
 

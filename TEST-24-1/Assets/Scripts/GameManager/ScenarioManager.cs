@@ -8,13 +8,14 @@ using UImanager;
 using General;
 using Tamplates;
 using Player;
+using Orbs;
 namespace GameManager
 {
     public class ScenarioManager : MonoBehaviour
     {
         public static event Action Win;
         private GoalsManager _goalsUI;
-        private EnemySpawner _spawner;
+        private ObjectSpawner _spawner;
         [SerializeField] private Scenario _scenario;
         public Dictionary<string, int> _goalsDict = new();
         private float timer = 0;
@@ -23,7 +24,7 @@ namespace GameManager
         private void Awake()
         {
             _goalsUI = GetComponent<GoalsManager>();
-            _spawner = GetComponent<EnemySpawner>();
+            _spawner = GetComponent<ObjectSpawner>();
             // Сделано с учетом нулевого уровня!!!!!!!!!!!!
             if (!_scenario._isTimer)
             {
@@ -63,11 +64,18 @@ namespace GameManager
         private void OnEnable()
         {
             EnemyHealth.EnemyDied += ManageEnemyDeath;
+            OrbCollection.OrbCollected += ManageOrbCollection;
         }
 
         private void OnDisable()
         {
             EnemyHealth.EnemyDied -= ManageEnemyDeath;
+            OrbCollection.OrbCollected -= ManageOrbCollection;
+        }
+
+        private void ManageOrbCollection(string orbTag)
+        {
+            _spawner.SpawnOrb(orbTag);
         }
 
         private void ManageEnemyDeath(string enemyTag)

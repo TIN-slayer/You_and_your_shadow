@@ -1,3 +1,4 @@
+using Orbs;
 using System;
 using UnityEngine;
 
@@ -7,11 +8,24 @@ namespace Enemies
     {
         [SerializeField] private GameObject _enemyObj;
         public static Action<string> EnemyDied;
+        private bool _isGuarded = false;
+
+        public bool GuardState
+        {
+            set
+            {
+                _isGuarded = value;
+            }
+        }
+
         public void TakeDamage()
         {
             // Добавить ивент для саунда и тд
-            EnemyDied?.Invoke(tag);
-            Destroy(_enemyObj);
+            if (!_isGuarded)
+            {
+                EnemyDied?.Invoke(tag);
+                Destroy(_enemyObj);
+            }
         }
     }
 }

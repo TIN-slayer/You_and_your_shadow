@@ -1,8 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-namespace Enemies
+namespace Traps
 {
     public class SneakyTrap : MonoBehaviour
     {
@@ -12,6 +11,7 @@ namespace Enemies
         [SerializeField] private float _sawTime;
         [SerializeField] private GameObject _pingPrefab;
         [SerializeField] private GameObject _sawPrefab;
+        [SerializeField] private bool isShadowTarget;
         private Transform _playerTransform;
 
 
@@ -27,11 +27,15 @@ namespace Enemies
             if (_playerTransform != null)
             {
                 Vector3 pos = _playerTransform.position;
+                if (isShadowTarget)
+                {
+                    pos = new(-pos.x, -pos.y, 0);
+                }
                 GameObject ping = Instantiate(_pingPrefab, pos, new Quaternion());
                 yield return new WaitForSeconds(_pingTime);
                 Destroy(ping);
                 GameObject saw = Instantiate(_sawPrefab, pos, new Quaternion());
-                saw.GetComponent<SpriteRenderer>().sortingOrder = 0;
+                //saw.GetComponent<SpriteRenderer>().sortingOrder = 0;
                 yield return new WaitForSeconds(_sawTime);
                 Destroy(saw);
                 StartCoroutine(LifeCycle());

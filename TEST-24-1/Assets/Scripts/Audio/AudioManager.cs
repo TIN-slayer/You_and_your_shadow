@@ -18,10 +18,12 @@ namespace Audio
         [SerializeField] private AudioSource _gameMusicSource;
         [SerializeField] private AudioSource _explosionSource;
         [SerializeField] private AudioSource _shootSource;
+        [SerializeField] private AudioSource _hurtSource;
         [SerializeField] private AudioSource _clickSource;
         [SerializeField] private AudioSource _winSource;
         [SerializeField] private AudioSource _loseSource;
         [SerializeField] private AudioClip _explosion;
+        [SerializeField] private AudioClip _hurt;
         [SerializeField] private AudioClip _win;
         [SerializeField] private AudioClip _lose;
         [SerializeField] private AudioClip _click;
@@ -84,6 +86,7 @@ namespace Audio
             PlayerHealth.Lose += PlayLose;
             ShootingEnemyController.StartedShoot += AddShooter;
             EnemyHealth.EnemyDied += ManageEnemyDeath;
+            PlayerHealth.LivesChanged += PlayHurtSFX;
         }
         private void OnDisable()
         {
@@ -95,6 +98,7 @@ namespace Audio
             PlayerHealth.Lose -= PlayLose;
             ShootingEnemyController.StartedShoot -= AddShooter;
             EnemyHealth.EnemyDied -= ManageEnemyDeath;
+            PlayerHealth.LivesChanged -= PlayHurtSFX;
         }
 
         private void Update()
@@ -115,6 +119,7 @@ namespace Audio
         private void PauseAudio()
         {
             StartCoroutine(FadeVolume(_explosionSource, _explosionFadeTime));
+            StartCoroutine(FadeVolume(_hurtSource, _explosionFadeTime));
             _shootSource.Pause();
             _isAudioPaused = true;
         }
@@ -125,9 +130,17 @@ namespace Audio
             _isAudioPaused = false;
         }
 
-        private void PlayExplosionSFX(Vector3 buffer)
+        private void PlayExplosionSFX(TeleportArgs teleportArgs)
         {
             _explosionSource.PlayOneShot(_explosion);
+        }
+
+        private void PlayHurtSFX(LivesChangedArgs arg)
+        {
+            if (arg.cooldown > 0)
+            {
+                _hurtSource.PlayOneShot(_hurt);
+            }
         }
 
         private void PlayWin()

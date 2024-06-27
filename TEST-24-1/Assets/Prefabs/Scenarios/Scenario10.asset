@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59a0a878ad8de584997ba9e6a31c833b, type: 3}
   m_Name: Scenario10
   m_EditorClassIdentifier: 
-  _isTimer: 1
-  _timeGoal: 20
-  _goals: []
+  _isTimer: 0
+  _timeGoal: 0
+  _goals:
+  - name: FollowingEnemy
+    val: 3

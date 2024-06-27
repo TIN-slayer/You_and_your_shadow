@@ -9,22 +9,22 @@ namespace Enemies
     {
         [SerializeField] private Collider2D _hitbox;
         [SerializeField] private float _invulnarableTime;
-        private CooldownAnimation _cooldownAnimation;
+        [SerializeField] private Color _invulnarableColor;
+        private SpecialStateAnimation _spawnAnimation;
 
         private void Awake()
         {
-            _cooldownAnimation = GetComponent<CooldownAnimation>();
-            _cooldownAnimation.CooldownTime = _invulnarableTime;
+            _spawnAnimation = GetComponent<SpecialStateAnimation>();
         }
 
         private void Start()
         {
+            _spawnAnimation.StartAnimation(_invulnarableTime, _invulnarableColor);
             StartCoroutine(InvulnarabilityPeriod());
         }
         private IEnumerator InvulnarabilityPeriod()
         {
             _hitbox.enabled = false;
-            _cooldownAnimation.StartAnimation();
             yield return new WaitForSeconds(_invulnarableTime);
             _hitbox.enabled = true;
         }
